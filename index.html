@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Velvet Banana Forecast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pop-yellow': '#FFF100',
+                        'pop-cyan': '#00FFFF',
+                        'pop-magenta': '#FF00FF',
+                        'pop-green': '#32CD32',
+                        'pop-purple': '#9400D3',
+                        'pop-pink': '#FF69B4',
+                        'pop-orange': '#FF4500',
+                        'pop-lime': '#32CD32',
+                    },
+                    fontFamily: {
+                        'display': ['Anton', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'marker': ['Anton', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'hard': '8px 8px 0px 0px #000000',
+                        'hard-sm': '4px 4px 0px 0px #000000',
+                        'hard-lg': '12px 12px 0px 0px #000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-banana-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M8 28 Q20 38 32 12' fill='none' stroke='%23FFD700' stroke-width='4' stroke-linecap='round' opacity='0.2'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "lucide-react": "https://esm.sh/lucide-react@0.292.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-50 bg-banana-pattern relative">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
