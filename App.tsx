@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { 
   LineChart, 
@@ -15,12 +14,11 @@ import { PopButton } from './components/PopButton';
 import { ChartFrame } from './components/ChartFrame';
 import { RetroTrendChart } from './components/RetroTrendChart';
 import { RetroWinRateChart } from './components/RetroWinRateChart';
-import { TacticalCalendar } from './components/TacticalCalendar';
+import { TacticalCalendar } from './components/TacticalCalendar.tsx';
 import { StrategyGuide } from './components/StrategyGuide';
 import { MOCK_DATA, transformJsonToCountryData, getUnifiedChartData } from './utils/data';
 import { CountryData, CountryId } from './types';
 import { getAnalysis } from './services/geminiService';
-
 
 // --- Custom Tooltip Component ---
 interface CustomTooltipProps extends TooltipProps<number, string> {
@@ -372,17 +370,9 @@ const App: React.FC = () => {
       <header className="bg-white border-b-8 border-black p-8 shadow-hard relative z-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="bg-pop-yellow border-4 border-black p-4 shadow-hard-sm transform -rotate-1 relative">
-             <div className="absolute -top-3 -right-3 flex items-center gap-2">
-  <div className="bg-black text-white font-display text-xs px-2 py-1 transform rotate-2">
-    Rongfei and Xinyue
-  </div>
-  <img 
-  src="/banana2.png"
-  alt="banana2"
-  className="w-8 h-8 transform rotate-3 drop-shadow-md"
-/>
-
-</div>
+             <div className="absolute -top-3 -right-3 bg-black text-white font-display text-xs px-2 py-1 transform rotate-2">
+                FACTORY EDITION
+             </div>
              <h1 className="text-5xl md:text-7xl font-display uppercase leading-none tracking-tighter text-black drop-shadow-sm">
               Banana<br/><span className="text-pop-magenta">Forecast</span>
             </h1>
@@ -392,7 +382,7 @@ const App: React.FC = () => {
             <div className="flex gap-2">
               <button 
                 onClick={() => fileInputRef.current?.click()}
-                className="font-display bg-pop-pink text-black border-4 border-black px-6 py-6 text-4xl transform -rotate-2 hover:scale-105 transition-transform shadow-hard-sm"
+                className="font-display bg-pop-pink text-black border-4 border-black px-6 py-3 text-2xl transform -rotate-2 hover:scale-105 transition-transform shadow-hard-sm"
               >
                 UPLOAD JSON
               </button>
@@ -575,7 +565,10 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* 5. EXECUTIVE STRATEGY DASHBOARD (Renumbered) */}
+        {/* 5. TACTICAL SOURCING CALENDAR (Moved Up) */}
+        <TacticalCalendar />
+
+        {/* 6. EXECUTIVE STRATEGY DASHBOARD */}
         <section className="mt-12 mb-12">
           <div className="border-b-8 border-black mb-8 pb-2">
             <h2 className="text-4xl md:text-6xl font-display uppercase leading-none tracking-tighter text-black drop-shadow-sm">
@@ -637,69 +630,14 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* 6. PROCUREMENT STRATEGY RECOMMENDATIONS (New Section) */}
-        <section className="mb-12">
-            <div className="bg-white border-4 border-black shadow-hard-lg overflow-hidden relative">
-                {/* Header mimicking a file folder tab */}
-                <div className="bg-pop-orange border-b-4 border-black p-4 flex items-center justify-between">
-                    <h2 className="font-display text-3xl md:text-4xl uppercase tracking-tighter text-white drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">
-                        Procurement Strategy Recommendations
-                    </h2>
-                    <div className="bg-black text-white px-3 py-1 font-mono text-xs uppercase rounded-full">CONFIDENTIAL</div>
-                </div>
-
-                <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                    {/* Halftone background */}
-                    <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/halftone-dots.png')] pointer-events-none"></div>
-
-                    {/* Short Term */}
-                    <div className="relative border-4 border-black bg-white p-6 shadow-hard-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-                        <div className="absolute -top-4 -left-2 bg-pop-green border-2 border-black px-4 py-1 font-display text-xl uppercase transform -rotate-2">
-                            Short Term (Now – 2026)
-                        </div>
-                        <div className="mt-4">
-                            <p className="mb-2 font-display text-2xl uppercase text-black">Preferred Origin: <span className="text-pop-magenta">Guatemala</span></p>
-                            <ul className="list-disc list-inside font-body font-bold space-y-2 text-gray-800">
-                                <li><span className="bg-black text-white px-1 text-sm uppercase mr-1">GOAL</span> Secure the absolute lowest market price available now.</li>
-                                <li><span className="bg-black text-white px-1 text-sm uppercase mr-1">ACTION</span> Prioritize negotiating large orders and long-term contracts with Guatemala to lock in supply and prices before they climb further.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    {/* Mid-to-Long Term */}
-                    <div className="relative border-4 border-black bg-white p-6 shadow-hard-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-                        <div className="absolute -top-4 -right-2 bg-pop-cyan border-2 border-black px-4 py-1 font-display text-xl uppercase transform rotate-2">
-                            Mid-to-Long Term (Post-2027)
-                        </div>
-                         <div className="mt-4">
-                            <p className="mb-2 font-display text-2xl uppercase text-black">Stable Alternative: <span className="text-pop-yellow bg-black px-1">Colombia</span></p>
-                            <ul className="list-disc list-inside font-body font-bold space-y-2 text-gray-800">
-                                <li><span className="bg-red-600 text-white px-1 text-sm uppercase mr-1">RISK</span> Guatemala is rising fastest. May not be cheapest in 1-2 years.</li>
-                                <li><span className="bg-black text-white px-1 text-sm uppercase mr-1">LOGIC</span> Colombia has slower growth, low volatility, and high stability.</li>
-                                <li><span className="bg-black text-white px-1 text-sm uppercase mr-1">ACTION</span> Start allocating share to Colombia now to diversify reliance.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* 7. SEASONALITY AND DECISION CALENDAR */}
-        <div className="border-b-8 border-black mb-8 pb-2">
-            <h2 className="text-3xl md:text-5xl font-display uppercase leading-none tracking-tighter text-black drop-shadow-sm">
-                Seasonality and Decision <span className="text-pop-purple">Calendar</span>
-            </h2>
-        </div>
-        <TacticalCalendar />
-
-        {/* 8. STRATEGY COMIC GUIDE */}
+        {/* 7. STRATEGY COMIC GUIDE (New) */}
         <StrategyGuide />
 
       </main>
 
-      {/* 9. FOOTER */}
+      {/* 8. FOOTER */}
       <footer className="bg-black text-white p-8 mt-12 text-center font-display uppercase tracking-widest text-xl border-t-8 border-pop-pink relative z-20">
-       
+        <p>Consumerism is the new art • 2025</p>
       </footer>
     </div>
   );
